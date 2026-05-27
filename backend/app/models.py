@@ -106,3 +106,12 @@ class HealthResponse(BaseModel):
     demo_mode: bool
     documents: int
     records: int
+
+
+class AgentStatusResponse(BaseModel):
+    status: str
+    mode: str
+    pipeline: list[str]
+    documents: int
+    records: int
+    message: str

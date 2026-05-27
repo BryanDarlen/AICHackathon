@@ -12,7 +12,7 @@ Use this as the exact content source for PowerPoint or Canva. Keep visible slide
 
 ## Screenshot Capture Plan
 
-Create `docs/screenshots/` and save these files. Slides use `02`, `03`, and `04`; `01` and `05` are useful demo backup screenshots.
+Create or confirm `docs/screenshots/` and save these files. The current PDF screenshots have been copied into `02`, `03`, and `04`; `01` and `05` are useful demo backup screenshots if you want fuller coverage.
 
 1. `01_home_ready.png`  
    Open `http://localhost:3002`. Capture the top of the app before clicking anything. Include the logo, backend status, buttons, and four metric cards.
@@ -48,6 +48,12 @@ Global Treasury Reconciliation Agent
 
 Match the current PDF title slide style.
 
+Useful assets:
+```text
+docs/assets/bank_icon.png
+frontend/public/reconpilot.png
+```
+
 Placement:
 - Use a black-to-purple retro grid background.
 - Put a white rounded-square `Reconpilot.` logo card on the left.
@@ -81,13 +87,13 @@ Hi, I am presenting ReconPilot, a Global Treasury Reconciliation Agent. It helps
 
 76%
 
-of organizations faced attempted or actual payment fraud in 2026.
+of organizations faced attempted or actual payment fraud in 2025.
 
 ~80%
 
 of treasury teams still use manual or fragmented workflows.
 
-**Small Bottom Line**
+**Speaker-Only Bottom Idea**
 
 Faster payments are increasing reconciliation pressure.
 
@@ -325,6 +331,11 @@ Canvas layout:
 - Add the bottom line in red/pink near the lower-left.
 - Add a large muted gear icon on the right.
 
+Use:
+```text
+docs/assets/gear_icon.png
+```
+
 Workflow text:
 ```text
 Load Files
@@ -378,15 +389,24 @@ The workflow mirrors how a finance reviewer works. Start with files, review extr
 
 **Visible Text**
 
-Next.js calls FastAPI.
+System Architecture
 
-FastAPI extracts and validates records.
+Next.js Dashboard
+frontend/src/lib/api.ts
 
-Python reconciles with MYR-normalized scoring.
+FastAPI API
+/api/upload /api/extract /api/reconcile /api/report/{run_id}
 
-SQLite stores documents, records, and runs.
+Extraction + Validation
+parsers + optional OpenAI-compatible LLM adapter
 
-Evidence and human review stay visible.
+Reconciliation Engine
+MYR normalization + match scoring + status decisions
+
+SQLite + Audit JSON
+
+Agent Framework Diagram
+Documents -> Extract/Validate -> Match -> Review -> Report
 
 **Visual**
 
@@ -600,17 +620,17 @@ Target revenue path, 2026-2035
 
 Amounts in US$ M
 
-Main point => Primary revenue: SME SaaS + document usage
-Connection => Refers to the first revenue layer: SME subscriptions and per-document processing
-Connection => Supports the target path by validating product value and pricing before later channels scale
+Primary revenue: SME SaaS, Document Usage
+SME subscriptions and per-document processing
+Supports product and pricing validation at low volume
 
-Main point => Primary revenue: accounting integrations
-Connection => Refers to an added revenue layer: paid integrations with accounting workflows
-Connection => Supports the target path by increasing document volume after core product validation
+Primary revenue: Accounting Integrations
+Paid integrations with accounting workflows
+Supports document volume growth and integration-based revenue
 
-Main point => Primary revenue: bank / ERP partnerships
-Connection => Refers to an added revenue layer: bank / ERP workflow partnerships
-Connection => Supports the target path by expanding distribution through partner channels
+Primary revenue: Bank / ERP partnerships
+Bank / ERP workflow partnerships
+Supports the target path by expanding distribution through partner channels
 
 Target revenue:
 US$194M by 2035
@@ -623,6 +643,11 @@ This is an assumption-based target model, not actual revenue. Use it to explain 
 
 Create a dark revenue projection chart similar to the reference image.
 
+Use the current PDF chart asset as the visual reference:
+```text
+docs/assets/revenue_chart_2026_2035.png
+```
+
 Chart endpoint:
 ```text
 2035 target revenue: US$194M
@@ -633,23 +658,23 @@ The current PDF shows a visual projection curve ending near the 2035 target. Do 
 Revenue phase labels:
 ```text
 2026-2028
-Main point => Primary revenue: SME SaaS + document usage
-Connection => Refers to the first revenue layer: SME subscriptions and per-document processing
-Connection => Supports the target path by validating product value and pricing before later channels scale
+Primary revenue: SME SaaS, Document Usage
+SME subscriptions and per-document processing
+Supports product and pricing validation at low volume
 ```
 
 ```text
 2029-2030
-Main point => Primary revenue: accounting integrations
-Connection => Refers to an added revenue layer: paid integrations with accounting workflows
-Connection => Supports the target path by increasing document volume after core product validation
+Primary revenue: Accounting Integrations
+Paid integrations with accounting workflows
+Supports document volume growth and integration-based revenue
 ```
 
 ```text
 2031-2035
-Main point => Primary revenue: bank / ERP partnerships
-Connection => Refers to an added revenue layer: bank / ERP workflow partnerships
-Connection => Supports the target path by expanding distribution through partner channels
+Primary revenue: Bank / ERP partnerships
+Bank / ERP workflow partnerships
+Supports the target path by expanding distribution through partner channels
 ```
 
 Canvas layout:
@@ -709,9 +734,9 @@ Style:
 |  0 | o-----o-----o----/                                      |
 |     2026  2027  2028  2029  2030  2031  2032  2033  2034  2035 |
 |                                                              |
-| Main: SME SaaS + docs  Main: accounting integrations Main: Bank/ERP |
-| Refers: subscriptions  Refers: paid workflows        Refers: workflow |
-| Supports: validation   Supports: volume growth       Supports: channels |
+| Primary revenue: SME SaaS   Primary revenue: Accounting Integrations |
+| SME subscriptions           Paid accounting workflows                 |
+| Primary revenue: Bank / ERP partnerships                              |
 |                                                              |
 | Assumption-based target model; not actual revenue.           |
 +--------------------------------------------------------------+
@@ -727,96 +752,80 @@ This slide is a target revenue model, not actual revenue. The current presentati
 
 Team composition
 
-[Member 1]
-[confirmed role / contribution]
-
-[Member 2]
-[confirmed role / contribution]
-
-[Member 3]
-[confirmed role / contribution]
-
-[Member 4]
-[confirmed role / contribution]
+Bryan Quinn Darlen
+Student
+Final-year Bachelor of Computer Science (Data Analytics)
+Joined multiple hackathons
 
 **Visual**
 
-Create a clean four-column team layout.
+Match the current PDF's single-member team slide.
 
-Canvas layout:
-- Use one equal-width column per confirmed team member.
-- If the team has fewer than four members, remove unused columns.
-- Each column should show the member name and their confirmed role or contribution.
-- Do not invent responsibilities. Use only confirmed team details.
-
-Suggested role wording examples:
+Use:
 ```text
-Product + Pitch
-Frontend + Demo
-Backend + Agent Workflow
-Research + Validation
+docs/assets/team_bryan_quinn_darlen.png
 ```
 
-Use the examples only if they match the real team contributions.
+Canvas layout:
+- Use a dark navy background.
+- Put `Our team` centered at the top.
+- Place the team photo on the left, inside a small rounded rectangle.
+- Place the name and details to the right of the photo.
+- Keep the text compact and white.
 
 Style:
-- Slide background: `#0F172A`.
+- Slide background: `#020B2D` or dark navy.
 - Member names: Inter Bold, white.
 - Role/contribution lines: Inter Medium, light slate.
-- Optional thin teal divider under the title.
 - Keep the layout simple and readable.
 
 **Example PPT Layout**
 
 ```text
 +--------------------------------------------------------------+
-| TEAM COMPOSITION                                             |
+| Our team                                                     |
 |                                                              |
-| [Member 1]       [Member 2]       [Member 3]       [Member 4] |
-| [role/contrib]   [role/contrib]   [role/contrib]   [role/contrib] |
+|          [team_bryan_quinn_darlen.png]                       |
+|                                   Bryan Quinn Darlen         |
+|                                   Student                    |
+|                                   Final-year BCS Data Analytics |
+|                                   Joined multiple hackathons |
 |                                                              |
-| Use confirmed names and contributions only.                  |
 +--------------------------------------------------------------+
 ```
 
 **Speaker Notes**
 
-This slide should introduce the registered team members and each person's confirmed contribution. Replace placeholders with real names and roles before submission.
+This slide introduces the registered team member and his confirmed background from the current presentation.
 
 ## Slide 10: Closing
 
 **Visible Text**
 
-ReconPilot turns treasury mess into explainable decisions.
+Thank you
 
-Faster reconciliation.
+Let's get in touch!
 
-Clearer exceptions.
-
-Human-controlled AI.
-
-**Final Line**
-
-Reconcile faster without giving up control.
+bryan.recontech@gmail.com
 
 **Visual**
 
-Use `frontend/public/reconpilot.png`.
+Use:
+```text
+docs/assets/thank_you_cube.png
+```
 
 Canvas layout:
-- Center the logo horizontally.
-- Logo width: 38% of slide width.
-- Place the visible text above the logo.
-- Place **Reconcile faster without giving up control.** below the logo.
+- Use the current PDF's dark navy background.
+- Place the large cube asset in the center.
+- Put **Thank you** over the cube in large white text.
+- Put **Let's get in touch!** below it.
+- Put `bryan.recontech@gmail.com` near the lower center.
 
 Text styling:
-- Main closing line: large Inter Bold.
-- Three short lines:
-  - Faster reconciliation.
-  - Clearer exceptions.
-  - Human-controlled AI.
-  should be smaller and spaced evenly.
-- Final line should be teal.
+- Main line: large Inter Bold, white.
+- Contact line: medium Inter, white.
+- Email: smaller Inter Medium, white.
 
 Do not use screenshots on this slide.
 
@@ -824,22 +833,20 @@ Do not use screenshots on this slide.
 
 ```text
 +--------------------------------------------------------------+
-| ReconPilot turns treasury mess into explainable decisions.   |
 |                                                              |
-| Faster reconciliation.                                       |
-| Clearer exceptions.                                          |
-| Human-controlled AI.                                         |
+|                         Thank you                            |
 |                                                              |
-|                    [reconpilot.png logo]                     |
-|                    width: 38% of slide                       |
+|                     Let's get in touch!                      |
 |                                                              |
-|             Reconcile faster without giving up control.      |
+|                    [thank_you_cube.png]                      |
+|                                                              |
+|                  bryan.recontech@gmail.com                   |
 +--------------------------------------------------------------+
 ```
 
 **Speaker Notes**
 
-ReconPilot is practical, demo-ready, and aligned with real treasury needs. It does not overpromise full autonomy. It gives reviewers a faster, clearer, and safer way to reconcile cross-border payments.
+Thank the judges and invite questions. Reinforce that ReconPilot is practical, demo-ready, and designed for explainable treasury reconciliation.
 
 ## 3-Minute Pitch Script
 
@@ -920,8 +927,9 @@ Capture these exact files for the deck and save them in `docs/screenshots/`:
 ## Submission Reminder
 
 - Keep the deck at 10 slides.
-- Replace team-composition placeholders with confirmed names and roles.
-- Confirm the 2035 target amount and chart values before final export.
+- Team composition is filled from the current presentation.
+- Keep `US$194M by 2035` if that is the confirmed target from the current presentation.
+- Confirm year-by-year chart values only if rebuilding Slide 8 as an editable chart.
 - Keep visible text short.
 - Use screenshots only where specified.
 - Include source footer only on Slide 2.

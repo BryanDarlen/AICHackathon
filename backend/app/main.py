@@ -12,6 +12,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from .agents import ExtractAgent, ValidateAgent
 from .llm_client import demo_mode_enabled
 from .models import (
+    AgentStatusResponse,
     ExtractRequest,
     ExtractionResponse,
     HealthResponse,
@@ -73,6 +74,26 @@ def health() -> HealthResponse:
         demo_mode=demo_mode_enabled(),
         documents=documents,
         records=records,
+    )
+
+
+@app.get("/api/agent/status", response_model=AgentStatusResponse)
+def agent_status() -> AgentStatusResponse:
+    documents, records = repo.counts()
+    demo_mode = demo_mode_enabled()
+    mode = "demo fallback" if demo_mode else "live LLM adapter"
+    return AgentStatusResponse(
+        status="connected",
+        mode=mode,
+        pipeline=["ExtractAgent", "ValidateAgent", "MatchAgent", "ExplainAgent"],
+        documents=documents,
+        records=records,
+        message=(
+            "Dashboard is connected to the bounded agent pipeline. "
+            "LLM extraction is disabled in demo mode."
+            if demo_mode
+            else "Dashboard is connected to the bounded agent pipeline with live LLM extraction available."
+        ),
     )
 
 

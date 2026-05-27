@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "powershell -ExecutionPolicy Bypass -File scripts/run_frontend.ps1 -StopExisting -CleanCache",
     "frontend": "powershell -ExecutionPolicy Bypass -File scripts/run_frontend.ps1 -StopExisting -CleanCache",
+    "backend": "powershell -ExecutionPolicy Bypass -File scripts/run_backend.ps1",
+    "backend:clean": "powershell -ExecutionPolicy Bypass -File scripts/run_backend.ps1 -StopExisting",
     "stop:frontend": "powershell -ExecutionPolicy Bypass -File scripts/stop_frontend.ps1",
     "build:frontend": "npm.cmd --prefix frontend run build",
     "test:backend": "python -m unittest discover backend/tests"

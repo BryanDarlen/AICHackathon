@@ -19,34 +19,56 @@ SMEs often receive local-currency bank deposits for foreign-currency invoices. M
 ## Architecture
 
 ```text
-Next.js frontend -> FastAPI backend -> Agent pipeline -> SQLite/local storage
-                                      -> OpenAI-compatible LLM adapter
-                                      -> deterministic reconciliation engine
+Next.js dashboard -> FastAPI backend -> Bounded agent pipeline -> SQLite/local storage
+                                          -> OpenAI-compatible LLM adapter
+                                          -> deterministic reconciliation engine
 ```
 
 The LLM is intentionally bounded. It extracts and explains, while Python performs validation, currency math, scoring, and final status decisions. This matches the workshop guidance: tools over cleverness, visible agent loops, privacy-conscious inference, and human review for sensitive actions.
 
+The dashboard communicates with the backend agent layer through the API. On load, it calls `/api/health` and `/api/agent/status` so the UI can show whether the backend is reachable, whether it is using demo fallback or live LLM mode, and which agent steps are available.
+
 ## Quick Start
 
-### Backend
+### 1. Install Backend Dependencies
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r backend/requirements.txt
-python -m uvicorn app.main:app --app-dir backend --host 127.0.0.1 --port 8000 --reload
 ```
 
-### Frontend
+### 2. Install Frontend Dependencies
 
 ```powershell
 npm install
-npm.cmd run dev
+```
+
+### 3. Start the Backend
+
+```powershell
+npm run backend
+```
+
+The backend runs on `http://127.0.0.1:8000`. Keep this terminal open while using the app.
+
+If port `8000` is already occupied by a stale ReconPilot backend process, use:
+
+```powershell
+npm run backend:clean
+```
+
+### 4. Start the Frontend
+
+Open a second terminal and run:
+
+```powershell
+npm run frontend
 ```
 
 Open `http://localhost:3002`.
 
-The root `dev` command runs the safe frontend helper. It stops a stale Node process on port `3002`, clears the generated `.next` cache, and starts Next.js in the visible terminal. Keep that terminal open while using the app. Press `Ctrl+C` in that same terminal to stop the frontend cleanly.
+The root `dev` command also runs the safe frontend helper. It stops a stale Node process on port `3002`, clears the generated `.next` cache, and starts Next.js in the visible terminal. Keep that terminal open while using the app. Press `Ctrl+C` in that same terminal to stop the frontend cleanly.
 
 If you prefer to call the helper directly, use:
 
@@ -102,10 +124,20 @@ Demo scenarios:
 | Method | Endpoint | Purpose |
 | --- | --- | --- |
 | GET | `/api/health` | Backend health check |
+| GET | `/api/agent/status` | Dashboard-to-agent connectivity, mode, and pipeline status |
 | POST | `/api/upload` | Upload user files |
 | POST | `/api/extract` | Extract structured records |
 | POST | `/api/reconcile` | Run reconciliation |
 | GET | `/api/report/{run_id}` | Fetch final report |
+
+The frontend uses `NEXT_PUBLIC_API_URL` to reach the backend. If it is not set, the dashboard defaults to `http://127.0.0.1:8000`.
+
+The agent status endpoint returns the current operating mode:
+
+- `demo fallback` when `DEMO_MODE=true`
+- `live LLM adapter` when live inference is enabled
+
+It also returns the visible pipeline used by the dashboard: `ExtractAgent`, `ValidateAgent`, `MatchAgent`, and `ExplainAgent`.
 
 When using Swagger at `/docs`, run `POST /api/extract` first with:
 

@@ -69,3 +69,12 @@ export interface HealthResponse {
   documents: number;
   records: number;
 }
+
+export interface AgentStatusResponse {
+  status: string;
+  mode: string;
+  pipeline: string[];
+  documents: number;
+  records: number;
+  message: string;
+}

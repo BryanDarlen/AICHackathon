@@ -44,6 +44,16 @@ class ApiFlowTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()["docs"], "/docs")
 
+    def test_agent_status_exposes_dashboard_contract(self):
+        client = TestClient(app)
+        response = client.get("/api/agent/status")
+        self.assertEqual(response.status_code, 200)
+        body = response.json()
+        self.assertEqual(body["status"], "connected")
+        self.assertIn("ExtractAgent", body["pipeline"])
+        self.assertIn("MatchAgent", body["pipeline"])
+        self.assertIn("Dashboard is connected", body["message"])
+
 
 if __name__ == "__main__":
     unittest.main()

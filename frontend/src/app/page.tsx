@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { api } from "../lib/api";
 import type {
+  AgentStatusResponse,
   DocumentRecord,
   ExtractionResponse,
   FinancialRecord,
@@ -49,6 +50,8 @@ export default function Home() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [health, setHealth] = useState<string>("checking");
+  const [agentStatus, setAgentStatus] = useState<AgentStatusResponse | null>(null);
+  const [agentConnection, setAgentConnection] = useState<string>("checking");
   const [documents, setDocuments] = useState<DocumentRecord[]>([]);
   const [records, setRecords] = useState<FinancialRecord[]>([]);
   const [source, setSource] = useState<string>("");
@@ -60,6 +63,16 @@ export default function Home() {
       .health()
       .then((value) => setHealth(value.demo_mode ? "demo mode" : "live inference ready"))
       .catch(() => setHealth("backend offline"));
+    api
+      .agentStatus()
+      .then((value) => {
+        setAgentStatus(value);
+        setAgentConnection(value.status);
+      })
+      .catch(() => {
+        setAgentStatus(null);
+        setAgentConnection("agent offline");
+      });
   }, []);
 
   const selected = useMemo(
@@ -143,6 +156,7 @@ export default function Home() {
           <div>
             <p className="panelLabel">Backend</p>
             <strong>{health}</strong>
+            <small>{agentConnection}</small>
           </div>
         </div>
       </section>
@@ -173,22 +187,33 @@ export default function Home() {
       <section className="metrics">
         <Metric label="Documents" value={documents.length.toString()} />
         <Metric label="Records" value={records.length.toString()} />
+        <Metric label="Agent" value={agentStatus?.mode || agentConnection} />
         <Metric label="Extraction" value={source || "not started"} />
         <Metric label="Run status" value={run ? "complete" : busy ? "working" : "ready"} />
       </section>
 
       <section className="grid two">
-        <Panel title="Agent Workflow" action="controlled agent" className="panelWorkflow">
+        <Panel title="Agent Workflow" action={agentStatus?.status || agentConnection} className="panelWorkflow">
+          <div className="agentConnection">
+            <div>
+              <span>Connection</span>
+              <strong>{agentStatus ? agentStatus.mode : agentConnection}</strong>
+            </div>
+            <p>{agentStatus?.message || "Start the FastAPI backend to connect the dashboard to the agent pipeline."}</p>
+          </div>
           <div className="workflow">
-            {workflowSteps.map((step, index) => (
-              <div className="workflowStep" key={step.name}>
+            {(agentStatus?.pipeline || workflowSteps.map((step) => step.name)).map((name, index) => {
+              const fallback = workflowSteps.find((step) => step.name === name);
+              return (
+              <div className="workflowStep" key={name}>
                 <span>{index + 1}</span>
                 <div>
-                  <strong>{step.name}</strong>
-                  <p>{step.detail}</p>
+                  <strong>{name}</strong>
+                  <p>{fallback?.detail || "Runs as part of the bounded reconciliation agent pipeline."}</p>
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
         </Panel>
 

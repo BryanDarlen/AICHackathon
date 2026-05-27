@@ -1,4 +1,9 @@
-import type { ExtractionResponse, HealthResponse, ReconciliationRun } from "../types";
+import type {
+  AgentStatusResponse,
+  ExtractionResponse,
+  HealthResponse,
+  ReconciliationRun
+} from "../types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
 
@@ -27,6 +32,7 @@ async function request<T>(path: string, options?: RequestInit): Promise<T> {
 
 export const api = {
   health: () => request<HealthResponse>("/api/health"),
+  agentStatus: () => request<AgentStatusResponse>("/api/agent/status"),
   extractDemo: () =>
     request<ExtractionResponse>("/api/extract", {
       method: "POST",
