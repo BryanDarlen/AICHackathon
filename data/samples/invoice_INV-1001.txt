@@ -1,0 +1,9 @@
+Document Type: Invoice
+Invoice Number: INV-1001
+Invoice Date: 2026-05-12
+Seller: CloudBridge Analytics
+Buyer: Borneo Retail Sdn Bhd
+Description: AI dashboard subscription
+Amount: USD 10.00
+Currency: USD
+Reference: INV-1001

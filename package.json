@@ -1,0 +1,12 @@
+{
+  "name": "reconpilot-workspace",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "powershell -ExecutionPolicy Bypass -File scripts/run_frontend.ps1 -StopExisting -CleanCache",
+    "frontend": "powershell -ExecutionPolicy Bypass -File scripts/run_frontend.ps1 -StopExisting -CleanCache",
+    "stop:frontend": "powershell -ExecutionPolicy Bypass -File scripts/stop_frontend.ps1",
+    "build:frontend": "npm.cmd --prefix frontend run build",
+    "test:backend": "python -m unittest discover backend/tests"
+  }
+}

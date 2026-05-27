@@ -1,0 +1,9 @@
+Document Type: Invoice
+Invoice Number: INV-1003
+Invoice Date: 2026-05-15
+Seller: Lion City Components
+Buyer: APU Robotics Lab
+Description: Sensor module order
+Amount: SGD 300.00
+Currency: SGD
+Reference: INV-1003

@@ -1,0 +1,7 @@
+Document Type: Payment Proof
+Payment Date: 2026-05-17
+Payer: Merdeka Books
+Payee: KL Cloud Services
+Amount Paid: MYR 880.00
+Currency: MYR
+Bank Reference: INV-1004

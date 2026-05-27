@@ -1,0 +1,7 @@
+Document Type: Payment Proof
+Payment Date: 2026-05-19
+Payer: GreenMart Asia
+Payee: Sabah Data Studio
+Amount Paid: USD 75.00
+Currency: USD
+Bank Reference: INV-I005

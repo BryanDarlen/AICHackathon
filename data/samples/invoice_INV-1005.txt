@@ -1,0 +1,9 @@
+Document Type: Invoice
+Invoice Number: INV-1005
+Invoice Date: 2026-05-18
+Seller: Sabah Data Studio
+Buyer: GreenMart Asia
+Description: Demand forecast prototype
+Amount: USD 75.00
+Currency: USD
+Reference: INV-1005

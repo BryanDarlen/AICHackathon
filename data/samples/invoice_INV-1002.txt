@@ -1,0 +1,9 @@
+Document Type: Invoice
+Invoice Number: INV-1002
+Invoice Date: 2026-05-14
+Seller: Nusantara Logistics
+Buyer: Pacific Foods MY
+Description: Cross-border freight deposit
+Amount: USD 120.00
+Currency: USD
+Reference: INV-1002

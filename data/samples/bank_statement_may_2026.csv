@@ -1,0 +1,7 @@
+date,description,counterparty,reference,amount,currency
+2026-05-13,Incoming transfer for AI dashboard subscription,Borneo Retail Sdn Bhd,INV-1001,42.50,MYR
+2026-05-15,Incoming transfer with FX fee,Pacific Foods MY,INV-1002,506.00,MYR
+2026-05-16,Incoming overseas transfer,APU Robotics Lab,INV-1003,945.00,MYR
+2026-05-17,Incoming local transfer,Merdeka Books,INV-1004,880.00,MYR
+2026-05-17,Duplicate incoming local transfer,Merdeka Books,INV-1004,880.00,MYR
+2026-05-19,Incoming transfer reference OCR typo,GreenMart Asia,INV-I005,318.75,MYR

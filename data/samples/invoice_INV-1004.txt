@@ -1,0 +1,9 @@
+Document Type: Invoice
+Invoice Number: INV-1004
+Invoice Date: 2026-05-16
+Seller: KL Cloud Services
+Buyer: Merdeka Books
+Description: Cloud backup annual renewal
+Amount: MYR 880.00
+Currency: MYR
+Reference: INV-1004
